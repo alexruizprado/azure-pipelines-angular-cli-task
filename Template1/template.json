@@ -1,0 +1,53 @@
+{
+    "id": "angular-cli",
+    "name": "Build, Test, and Validate an Angular project",
+    "category": "Build",
+    "description": "Build, Test and Validate your Angular project.",
+    "template": {
+        "buildNumberFormat": "$(date:yyyyMMdd)$(rev:.r)",
+        "build": [{
+                "enabled": true,
+                "inputs": {
+                    "samplestring": "$(Parameters.samplestring)"
+                },
+                "task": {
+                    "id": "74b00cae-14b5-414f-b9f1-1aa71b192da2",
+                    "versionSpec": "0.*"
+                }
+            },
+            {
+                "enabled": true,
+                "inputs": {
+                    "samplestring": "$(Parameters.samplestring)"
+                },
+                "task": {
+                    "id": "74b00cae-14b5-414f-b9f1-1aa71b192da2",
+                    "versionSpec": "0.*"
+                }
+            }
+        ],
+        "options": [{
+            "definition": {
+                "id": "5D58CC01-7C75-450C-BE18-A388DDB129EC"
+            },
+            "enabled": true,
+            "inputs": {}
+        }],
+        "variables": {
+            "system.debug": {
+                "value": "false",
+                "allowOverride": true
+            }
+        },
+        "triggers": [],
+        "processParameters": {
+            "inputs": [{
+                "name": "samplestring",
+                "label": "samplestring",
+                "defaultValue": "hello world!",
+                "required": true,
+                "type": "string"
+            }]
+        }
+    }
+}
