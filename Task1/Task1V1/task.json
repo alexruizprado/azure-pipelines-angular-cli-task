@@ -12,7 +12,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 12
+        "Patch": 20
     },
     "runsOn": [
         "Agent"
@@ -36,9 +36,9 @@
             "EditableOptions": "False"
         }
     }, {
-        "name": "projects",
+        "name": "project",
         "type": "filePath",
-        "label": "Path to project root",
+        "label": "Path to the Angular project root",
         "defaultValue": "",
         "visibleRule": "command = build || command = lint || command = test || command = e2e || command = custom",
         "required": false,
@@ -59,6 +59,28 @@
         "visibleRule": "command = build || command = lint || command = test || command = e2e || command = custom",
         "required": false,
         "helpMarkDown": "Arguments to the selected command if needed. The arguments depend on the command selected."
+    }, {
+        "name": "verbose",
+        "type": "boolean",
+        "label": "Verbose",
+        "defaultValue": false,
+        "required": false,
+        "helpMarkDown": "Check this if you want execute commands on verbose mode. Equivalent to --verbose on the arguments."
+    }, {
+        "name": "debug",
+        "type": "boolean",
+        "label": "Debug",
+        "defaultValue": false,
+        "required": false,
+        "helpMarkDown": "Check this if you want print extra information for debugging this extension."
+    }, {
+        "name": "prod",
+        "type": "boolean",
+        "label": "Prod build",
+        "defaultValue": true,
+        "required": false,
+        "visibleRule": "command = build",
+        "helpMarkDown": "Equivalent to argument --prod"
     }],
     "execution": {
         "Node10": {

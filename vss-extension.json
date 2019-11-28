@@ -1,8 +1,8 @@
 {
     "manifestVersion": 1,
-    "id": "angular-cli",
+    "id": "angular-cli-1",
     "name": "Angular CLI",
-    "version": "1.0.1",
+    "version": "1.0.9",
     "publisher": "RaulARuiz",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"

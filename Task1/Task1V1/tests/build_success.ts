@@ -5,6 +5,10 @@ import path = require('path');
 let taskPath = path.join(__dirname, '..', 'index.js');
 let tmr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 
-tmr.setInput('command', 'bad');
+tmr.setInput('command', 'build');
+tmr.setInput('debug', 'true');
+tmr.setInput('verbose', 'true');
+tmr.setInput('project', `D:\\vsts-agent\\_work\\7\\s\\AngularTest`);
+
 
 tmr.run();

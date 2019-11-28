@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "scripts":{
+    "build": "tsc",
+    "test": "tsc & mocha tests/_suite.js"
+  },
   "dependencies": {
     "azure-pipelines-task-lib": "^2.9.3"
   },
