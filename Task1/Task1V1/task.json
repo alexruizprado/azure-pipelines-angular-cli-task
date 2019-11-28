@@ -60,6 +60,14 @@
         "required": false,
         "helpMarkDown": "Arguments to the selected command if needed. The arguments depend on the command selected."
     }, {
+        "name": "prod",
+        "type": "boolean",
+        "label": "Prod build",
+        "defaultValue": true,
+        "required": false,
+        "visibleRule": "command = build",
+        "helpMarkDown": "Equivalent to argument --prod"
+    }, {
         "name": "verbose",
         "type": "boolean",
         "label": "Verbose",
@@ -73,14 +81,6 @@
         "defaultValue": false,
         "required": false,
         "helpMarkDown": "Check this if you want print extra information for debugging this extension."
-    }, {
-        "name": "prod",
-        "type": "boolean",
-        "label": "Prod build",
-        "defaultValue": true,
-        "required": false,
-        "visibleRule": "command = build",
-        "helpMarkDown": "Equivalent to argument --prod"
     }],
     "execution": {
         "Node10": {
