@@ -1,0 +1,21 @@
+{
+  "name": "azure-pipelines-angular-cli-task",
+  "version": "1.0.0",
+  "description": "Azure DevOps Pipelines task extension that can build, tests, lint, e2e an Angular project, or run a custom Angular CLI command.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexruizprado/azure-pipelines-angular-cli-task.git"
+  },
+  "author": "Raul A. Ruiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexruizprado/azure-pipelines-angular-cli-task/issues"
+  },
+  "homepage": "https://github.com/alexruizprado/azure-pipelines-angular-cli-task#readme",
+  "scripts": {
+    "create": "npx tfx extension create"
+  },
+  "devDependencies": {
+    "tfx-cli": "^0.7.11"
+  }
+}

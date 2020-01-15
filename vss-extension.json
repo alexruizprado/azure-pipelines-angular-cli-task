@@ -18,6 +18,11 @@
         "Preview",
         "Public"
     ],
+    "content": {
+        "details": {
+            "path": "readme.md"
+        }
+    },
     "icons": {
         "default": "images/angular-cli.png"
     },

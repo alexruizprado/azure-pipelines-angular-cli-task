@@ -6,7 +6,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "scripts":{
+  "scripts": {
     "build": "tsc",
     "test": "tsc & mocha tests/_suite.js"
   },
