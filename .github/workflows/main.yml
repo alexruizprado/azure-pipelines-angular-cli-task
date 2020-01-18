@@ -12,7 +12,7 @@ jobs:
     - name: npm install
       run: npm install && cd Task1/Task1V1 && npm install
     - name: npm run test
-      run: npm run test --prefix Task1/Task1V1
+      run: cd Task1/Task1V1&& npm run test
     - name: npm run create
       run: npm run create
     
