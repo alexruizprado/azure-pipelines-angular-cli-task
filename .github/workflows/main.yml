@@ -14,3 +14,6 @@ jobs:
         run: cd Task1/Task1V1 && npm run test
       - name: npm run create
         run: npm run create
+      - name: publish
+        run: npx tfx extension publish --auth-type='pat' -t='${{ secrets.Marketplace }}' --rev-version
+        if: github.ref == 'refs/heads/master'

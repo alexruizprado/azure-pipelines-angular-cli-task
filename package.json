@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/alexruizprado/azure-pipelines-angular-cli-task#readme",
   "scripts": {
-    "create": "npx tfx extension create"
+    "create": "npx tfx extension create --rev-version"
   },
   "devDependencies": {
     "tfx-cli": "^0.7.11"

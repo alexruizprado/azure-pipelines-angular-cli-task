@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "angular-cli-1",
     "name": "Angular CLI",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "publisher": "RaulARuiz",
     "targets": [
         {

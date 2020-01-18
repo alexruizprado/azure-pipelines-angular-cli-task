@@ -1,22 +1,22 @@
 import tl = require('azure-pipelines-task-lib/task');
 import { exec, ExecException } from 'child_process';
 
-interface CommandOutput{
+interface CommandOutput {
     stdout: string;
     stderr?: string;
     error?: ExecException;
 }
 
 //this function will check if @angular/cli is available
-async function validateNg(onSuccess: Function, onError: Function){
+async function validateNg(onSuccess: Function, onError: Function) {
     console.log('Checking if Angular CLI is avilable...');
     exec('ng version',
         (error, stdout, stderr) => {
             if (error !== null) {
-                console.log(`exec error: ${error}`);
-                console.log(`'Angular CLI NOT found'`);
+                console.error(`exec error: ${error}`);
+                console.error(`'Angular CLI NOT found'`);
                 onError();
-            }else{
+            } else {
                 const versionRegex = /Angular CLI: (\d+.\d+.\d+)/;
                 let m;
                 if ((m = versionRegex.exec(stdout)) !== null) {
@@ -28,26 +28,19 @@ async function validateNg(onSuccess: Function, onError: Function){
         });
 }
 
-function execute(command: string, cwd: string, onSuccess: Function, onError: Function){
+function execute(command: string, cwd: string, onSuccess: Function, onError: Function) {
     return exec(command,
         {
             encoding: "UTF-8",
             cwd: cwd
         }, (error, stdout, stderr) => {
             if (error !== null) {
-                console.log(`exec error: ${error}`);
+                console.error(`exec error: ${error}`);
                 onError(error, stderr);
-            }else{
+            } else {
                 onSuccess(stdout);
             }
         });
-}
-
-async function printDirectoryInfo(directory: string){
-            console.log('Directory information...');
-            return exec('dir', {encoding: "UTF-8", cwd: directory}, (error, stdout, stderr) => {
-                console.log(error, stdout, stderr);
-            });
 }
 
 async function run() {
@@ -59,33 +52,32 @@ async function run() {
         const debug: boolean = tl.getBoolInput('debug', false);
         const verbose: boolean = tl.getBoolInput('verbose', false);
         const isProd: boolean = tl.getBoolInput('prod', false);
-        
+
         if (command == 'bad') {
             tl.setResult(tl.TaskResult.Failed, 'Bad command was given');
             return;
         }
-        
-        if(verbose){
-            if(command === 'build' && args.indexOf('--verbose') === -1){
+
+        if (verbose) {
+            if (command === 'build' && args.indexOf('--verbose') === -1) {
                 let argsArray = args.split(' ');
                 argsArray.push('--verbose');
                 args = argsArray.join(' ');
             }
         }
 
-        if(command === 'test' && args.indexOf('--watch') === -1){
+        if (command === 'test' && args.indexOf('--watch') === -1) {
             let argsArray = args.split(' ');
             argsArray.push('--watch=false');
             args = argsArray.join(' ');
-        }else if(command == 'build' && isProd && args.indexOf('--prod') === -1){
+        } else if (command == 'build' && isProd && args.indexOf('--prod') === -1) {
             let argsArray = args.split(' ');
             argsArray.push('--prod');
             args = argsArray.join(' ');
         }
 
-        if(debug){
+        if (debug) {
             console.log(custom || command, project, args, debug, verbose);
-            printDirectoryInfo(project);
         }
 
         validateNg(() => {
@@ -93,13 +85,14 @@ async function run() {
             execute(`ng ${custom || command} ${args}`, project, (output: string) => {
                 console.log(`Output (ng ${custom || command} ${args}):`, output);
             }, (error: ExecException, stderror: string) => {
-                console.log(`There was an error: ${stderror}`, error);
+                console.error(`There was an error: ${stderror}`, error);
             }).on('exit', code => {
-                if(code == 1){
-                    tl.setResult(tl.TaskResult.Failed, `ng ${custom || command} ${args} returned exit code 1`);    
+                if (code == 1) {
+                    tl.setResult(tl.TaskResult.Failed, `ng ${custom || command} ${args} returned exit code 1`);
                 }
             });
         }, () => {
+            console.error('Angular CLI was not found');
             tl.setResult(tl.TaskResult.Failed, 'Angular CLI was not found');
             return;
         });
