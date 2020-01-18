@@ -1,4 +1,4 @@
-# Angular CLI Tasks and Template for Azure Pipelines
+# Angular CLI Task and Template for Azure Pipelines
 
 The extension provides the basic tasks for building Angular applications using Angular CLI command line interface.
 
