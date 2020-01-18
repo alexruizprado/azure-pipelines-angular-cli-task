@@ -12,6 +12,8 @@ jobs:
         run: npm install
       - name: npm install
         run: cd Task1/Task1V1 && npm install
+      - name: npm install @angular/cli
+        run: cd Task1/Task1V1 && npm install @angular/cli
       - name: npm run build
         run: cd Task1/Task1V1 && npm run build
       - name: npm run test
