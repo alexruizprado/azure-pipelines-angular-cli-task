@@ -4,15 +4,13 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: npm install
-      run: npm install && cd Task1/Task1V1 && npm install
-    - name: npm run test
-      run: cd Task1/Task1V1&& npm run test
-    - name: npm run create
-      run: npm run create
-    
+      - uses: actions/checkout@v1
+      - name: npm install
+        run: npm install && cd Task1/Task1V1 && npm install
+      - name: npm run test
+        run: cd Task1/Task1V1 && npm run test
+      - name: npm run create
+        run: npm run create
