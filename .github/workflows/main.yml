@@ -10,7 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: npm install
-      run: npm install
+      run: npm install && cd Task1/Task1V1 && npm install
+    - name: npm run test
+      run: npm run test --prefix Task1/Task1V1
     - name: npm run create
       run: npm run create
     
