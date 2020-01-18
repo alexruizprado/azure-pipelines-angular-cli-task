@@ -1,4 +1,4 @@
-name: CI
+name: Build, Test, Create and Publish extension
 
 on: [push]
 
