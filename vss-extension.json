@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "angular-cli-1",
     "name": "Angular CLI",
-    "version": "1.0.10",
+    "version": "1.0.12",
     "publisher": "RaulARuiz",
     "targets": [
         {
@@ -24,7 +24,7 @@
         }
     },
     "icons": {
-        "default": "images/angular-cli.png"
+        "default": "images/angular-cli-square.png"
     },
     "files": [
         {
