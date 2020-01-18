@@ -2,6 +2,9 @@
 *.js
 *.vsix
 
+#mocha
+.taskkey
+
 # Logs
 logs
 *.log
