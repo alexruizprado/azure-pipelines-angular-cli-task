@@ -1,0 +1,117 @@
+{
+    "id": "angular-cli",
+    "name": "Build, Test, and Validate an Angular project",
+    "category": "Build",
+    "description": "Build, Test and Validate your Angular project.",
+    "iconTaskId": "74b00cae-14b5-414f-b9f1-1aa71b192da2",
+    "template": {
+        "buildNumberFormat": "$(date:yyyyMMdd)$(rev:.r)",
+        "build": [
+            {
+                "enabled": true,
+                "inputs": {
+                    "versionSpec": "10.x"
+                },
+                "task": {
+                    "id": "31c75bbb-bcdf-4706-8d7c-4da6a1959bc2",
+                    "versionSpec": "0.*"
+                }
+            },{
+                "enabled": true,
+                "inputs": {
+                    "workingDir": "$(Parameters.project)"
+                },
+                "task": {
+                    "id": "fe47e961-9fa8-4106-8639-368c022d43ad",
+                    "versionSpec": "1.*"
+                }
+            },{
+                "enabled": true,
+                "inputs": {
+                    "command": "test",
+                    "project":"$(Parameters.project)"
+                },
+                "task": {
+                    "id": "74b00cae-14b5-414f-b9f1-1aa71b192da2",
+                    "versionSpec": "0.*"
+                }
+            },
+            {
+                "enabled": true,
+                "inputs": {
+                    "command": "lint",
+                    "project":"$(Parameters.project)"
+                },
+                "task": {
+                    "id": "74b00cae-14b5-414f-b9f1-1aa71b192da2",
+                    "versionSpec": "0.*"
+                }
+            },
+            {
+                "enabled": false,
+                "inputs": {
+                    "command": "e2e",
+                    "project":"$(Parameters.project)"
+                },
+                "task": {
+                    "id": "74b00cae-14b5-414f-b9f1-1aa71b192da2",
+                    "versionSpec": "0.*"
+                }
+            },
+            {
+                "enabled": true,
+                "inputs": {
+                    "command": "build",
+                    "project":"$(Parameters.project)"
+                },
+                "task": {
+                    "id": "74b00cae-14b5-414f-b9f1-1aa71b192da2",
+                    "versionSpec": "0.*"
+                }
+            },{
+                "enabled": false,
+                "inputs": {
+                    "SourceFolder": "$(Parameters.project)",
+                    "Contents": "dist\\**",
+                    "TargetFolder": "$(Build.ArtifactStagingDirectory)",
+                    "CleanTargetFolder": true
+                },
+                "task": {
+                    "id": "5bfb729a-a7c8-4a78-a7c3-8d717bb7c13c",
+                    "versionSpec": "2.*"
+                }
+            },{
+                "enabled": false,
+                "inputs": {
+                },
+                "task": {
+                    "id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
+                    "versionSpec": "1.*"
+                }
+            }
+        ],
+        "options": [{
+            "definition": {
+                "id": "5D58CC01-7C75-450C-BE18-A388DDB129EC"
+            },
+            "enabled": true,
+            "inputs": {}
+        }],
+        "variables": {
+            "system.debug": {
+                "value": "false",
+                "allowOverride": true
+            }
+        },
+        "triggers": [],
+        "processParameters": {
+            "inputs": [{
+                "name": "project",
+                "label": "Path to Angular project root",
+                "defaultValue": "",
+                "required": true,
+                "type": "filePath"
+            }]
+        }
+    }
+}

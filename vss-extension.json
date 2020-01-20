@@ -1,0 +1,59 @@
+{
+    "manifestVersion": 1,
+    "id": "angular-cli-1",
+    "name": "Angular CLI",
+    "version": "1.0.14",
+    "publisher": "RaulARuiz",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "preview": true,
+    "description": "Build, tests, lint, e2e an Angular project, or run a custom Angular CLI command.",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "galleryFlags": [
+        "Preview",
+        "Public"
+    ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        }
+    },
+    "icons": {
+        "default": "images/angular-cli-square.png"
+    },
+    "files": [
+        {
+            "path": "Task1"
+        },
+        {
+            "path": "Template1"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "angular-cli-build-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Task1"
+            }
+        },
+        {
+            "id": "Template1",
+            "type": "ms.vss-build.template",
+            "targets": [
+                "ms.vss-build.templates"
+            ],
+            "properties": {
+                "name": "Template1"
+            }
+        }
+    ]
+}
