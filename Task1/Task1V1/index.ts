@@ -8,20 +8,23 @@ interface CommandOutput {
 }
 
 //this function will check if @angular/cli is available
-async function validateNg(onSuccess: Function, onError: Function) {
-  console.log('Checking if Angular CLI is available...');
+async function validateNg(folder: string, onSuccess: Function, onError: Function) {
   exec('npx ng version',
+    {
+      encoding: "UTF-8",
+      cwd: folder
+    },
     (error, stdout, stderr) => {
       if (error !== null) {
         console.error(`exec error: ${error}`);
-        console.error(`'Angular CLI NOT found'`);
+        console.error(`Angular CLI NOT found`);
         onError();
       } else {
         const versionRegex = /Angular CLI: (\d+.\d+.\d+)/;
         let m;
-        if ((m = versionRegex.exec(stdout)) !== null) {
+        if ((m = versionRegex.exec(stdout.toString())) !== null) {
           // The result can be accessed through the `m`-variable.
-          console.log(`Angular CLI found: ${m[1]}`);
+          console.log(`Using Angular CLI ${m[1]}`);
         }
         onSuccess();
       }
@@ -80,7 +83,7 @@ async function run() {
       console.log(custom || command, project, args, debug, verbose);
     }
 
-    validateNg(() => {
+    validateNg(project, () => {
       console.log(`Executing ng ${custom || command} ${args}`);
       execute(`ng ${custom || command} ${args}`, project, (output: string) => {
         console.log(`Output (ng ${custom || command} ${args}):`, output);
