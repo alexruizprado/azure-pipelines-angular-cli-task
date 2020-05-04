@@ -95,7 +95,7 @@ async function run() {
         }
       });
     }, () => {
-      console.error('Angular CLI was not found');
+      console.error('Angular CLI was not found.\nRemember to perform "npm install" before using the steps of the Angular CLI extension.\nAngular CLI extensions uses @angular/cli package located in the node_modules folder of an Angular application.\nIf you still have issue or doubts you can open a ticket in https://github.com/alexruizprado/azure-pipelines-angular-cli-task under Issues.');
       tl.setResult(tl.TaskResult.Failed, 'Angular CLI was not found');
       return;
     });
