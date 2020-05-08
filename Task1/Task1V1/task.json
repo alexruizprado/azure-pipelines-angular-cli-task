@@ -14,12 +14,19 @@
   "version": {
     "Major": 0,
     "Minor": 0,
-    "Patch": 27
+    "Patch": 28
   },
   "runsOn": [
     "Agent"
   ],
   "instanceNameFormat": "ng $(command)",
+  "groups": [
+    {
+      "name": "loggingGroup",
+      "displayName": "Logging",
+      "isExpanded": false
+    }
+  ],
   "inputs": [
     {
       "name": "command",
@@ -90,6 +97,15 @@
       "defaultValue": false,
       "required": false,
       "helpMarkDown": "Check this if you want print extra information for debugging this extension."
+    },
+    {
+      "name": "DisableAnalytics",
+      "type": "boolean",
+      "label": "Disable Analytics",
+      "defaultValue": false,
+      "required": true,
+      "helpMarkDown": "Analytics service for monitoring this extension. For more information check extension page.",
+      "groupName": "loggingGroup"
     }
   ],
   "execution": {

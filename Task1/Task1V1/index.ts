@@ -1,6 +1,8 @@
 import tl = require('azure-pipelines-task-lib/task');
 import { exec, ExecException } from 'child_process';
 
+import { AnalyticsService } from './services'
+
 interface CommandOutput {
   stdout: string;
   stderr?: string;
@@ -47,6 +49,9 @@ function execute(command: string, cwd: string, onSuccess: Function, onError: Fun
 }
 
 async function run() {
+  const analyticsDisabled: boolean = tl.getBoolInput('DisableAnalytics', false);
+  const telemetry = new AnalyticsService('$(InstrumentationKey)', analyticsDisabled);
+  telemetry.trackEvent('Angular CLI Started');
   try {
     const command: string | undefined = tl.getInput('command', true);
     const project: string | undefined = tl.getInput('project', false) || '.';
@@ -55,6 +60,16 @@ async function run() {
     const debug: boolean = tl.getBoolInput('debug', false);
     const verbose: boolean = tl.getBoolInput('verbose', false);
     const isProd: boolean = tl.getBoolInput('prod', false);
+
+    telemetry.trackEventExtended({
+      name: 'Settings',
+      properties: {
+        'command': command ? command.toString() : '',
+        'debug': debug ? debug.toString() : '',
+        'verbose': verbose ? verbose.toString() : '',
+        'isProd': isProd ? isProd.toString() : '',
+      }
+    });
 
     if (command == 'bad') {
       tl.setResult(tl.TaskResult.Failed, 'Bad command was given');
@@ -89,18 +104,23 @@ async function run() {
         console.log(`Output (ng ${custom || command} ${args}):`, output);
       }, (error: ExecException, stderror: string) => {
         console.error(`There was an error: ${stderror}`, error);
+        telemetry.trackException(stderror);
+        telemetry.trackExceptionExtended(error);
       }).on('exit', code => {
         if (code == 1) {
           tl.setResult(tl.TaskResult.Failed, `ng ${custom || command} ${args} returned exit code 1`);
         }
       });
     }, () => {
-      console.error('Angular CLI was not found.\nRemember to perform "npm install" before using the steps of the Angular CLI extension.\nAngular CLI extensions uses @angular/cli package located in the node_modules folder of an Angular application.\nIf you still have issue or doubts you can open a ticket in https://github.com/alexruizprado/azure-pipelines-angular-cli-task under Issues.');
-      tl.setResult(tl.TaskResult.Failed, 'Angular CLI was not found.\nRemember to perform "npm install" before using the steps of the Angular CLI extension.\nAngular CLI extensions uses @angular/cli package located in the node_modules folder of an Angular application.\nIf you still have issue or doubts you can open a ticket in https://github.com/alexruizprado/azure-pipelines-angular-cli-task under Issues.');
+      const message = 'Angular CLI was not found.\nRemember to perform "npm install" before using the steps of the Angular CLI extension.\nAngular CLI extensions uses @angular/cli package located in the node_modules folder of an Angular application.\nIf you still have issue or doubts you can open a ticket in https://github.com/alexruizprado/azure-pipelines-angular-cli-task under Issues.';
+      telemetry.trackException('Angular CLI not found');
+      console.error(message);
+      tl.setResult(tl.TaskResult.Failed, message);
       return;
     });
   }
   catch (err) {
+    telemetry.trackException(err.message);
     tl.setResult(tl.TaskResult.Failed, err.message);
   }
 }

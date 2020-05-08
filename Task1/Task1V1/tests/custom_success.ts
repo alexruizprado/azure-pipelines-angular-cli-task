@@ -9,7 +9,7 @@ tmr.setInput('command', 'custom');
 tmr.setInput('custom', 'version');
 tmr.setInput('debug', 'true');
 tmr.setInput('verbose', 'true');
-tmr.setInput('project', `D:\\vsts-agent\\_work\\7\\s\\AngularTest`);
+tmr.setInput('project', ``);
 
 
 tmr.run();

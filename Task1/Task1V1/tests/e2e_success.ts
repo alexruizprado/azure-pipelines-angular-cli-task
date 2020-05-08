@@ -8,7 +8,7 @@ let tmr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 tmr.setInput('command', 'e2e');
 tmr.setInput('debug', 'true');
 tmr.setInput('verbose', 'true');
-tmr.setInput('project', `D:\\vsts-agent\\_work\\7\\s\\AngularTest`);
+tmr.setInput('project', ``);
 
 
 tmr.run();
