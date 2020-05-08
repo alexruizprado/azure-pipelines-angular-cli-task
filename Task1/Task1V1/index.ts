@@ -50,7 +50,7 @@ function execute(command: string, cwd: string, onSuccess: Function, onError: Fun
 
 async function run() {
   const analyticsDisabled: boolean = tl.getBoolInput('DisableAnalytics', false);
-  const telemetry = new AnalyticsService('$(InstrumentationKey)', analyticsDisabled);
+  const telemetry = new AnalyticsService('##{InstrumentationKey}##', analyticsDisabled);
   telemetry.trackEvent('Angular CLI Started');
   try {
     const command: string | undefined = tl.getInput('command', true);

@@ -14,7 +14,7 @@ export class AnalyticsService {
 
         appInsights.defaultClient.commonProperties = {
           task: 'Angular CLI',
-          version: '$(ExtensionVersion)',
+          version: '##{ExtensionVersion}##',
         };
 
         appInsights.start();
