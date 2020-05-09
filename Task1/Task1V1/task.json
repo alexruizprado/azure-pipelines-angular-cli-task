@@ -7,6 +7,7 @@
   "helpMarkDown": "",
   "category": "Build",
   "author": "Raul A. Ruiz",
+  "helpUrl": "https://github.com/alexruizprado/azure-pipelines-angular-cli-task",
   "visibility": [
     "Build"
   ],
