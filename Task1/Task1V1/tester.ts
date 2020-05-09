@@ -1,7 +1,8 @@
 import { exec, ExecException, spawn } from 'child_process';
 
-let child = spawn('npx', ['ng', 'version'], {
-  cwd: '.'
+let child = spawn('npx', ['ng version'], {
+  cwd: '.',
+  shell: true
 });
 
 child.stdout.setEncoding('utf8');

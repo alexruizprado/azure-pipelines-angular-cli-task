@@ -14,7 +14,8 @@ async function validateNg(folder: string, onSuccess: Function, onError: Function
   let version: any = null;
 
   let child = spawn('npx', ['ng', 'version'], {
-    cwd: folder
+    cwd: folder,
+    shell: true
   });
 
   child.stdout.setEncoding('utf8');
@@ -48,9 +49,10 @@ async function validateNg(folder: string, onSuccess: Function, onError: Function
 
 }
 
-function execute(command: string, cwd: string, onSuccess: Function, onError: Function, onExit: Function) {
-  let child = spawn('npx', ['ng', 'version'], {
-    cwd: cwd
+function execute(command: string, args: string, cwd: string, onSuccess: Function, onError: Function, onExit: Function) {
+  let child = spawn(command, [args], {
+    cwd: cwd,
+    shell: true
   });
 
   child.stdout.setEncoding('utf8');
@@ -126,7 +128,7 @@ async function run() {
 
     validateNg(project, (version: any) => {
       console.log(`Executing ng ${custom || command} ${args}`);
-      execute(`ng ${custom || command} ${args}`, project, (output: string) => {
+      execute(`npx`, `ng ${custom || command} ${args}`, project, (output: string) => {
         console.log(`Output (ng ${custom || command} ${args}):`, output);
         telemetry.trackEvent('Angular CLI ended.');
       }, (stderror: string) => {
