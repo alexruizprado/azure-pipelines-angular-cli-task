@@ -8,19 +8,21 @@
   "license": "ISC",
   "scripts": {
     "build": "tsc",
-    "test": "tsc & mocha tests/_suite.js"
+    "test": "tsc & mocha -r ts-node/register --timeout 999999 --colors tests/_suite.js"
   },
   "dependencies": {
     "azure-pipelines-task-lib": "^2.9.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.11",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.14",
     "@types/q": "^1.5.2",
-    "sync-request": "^6.1.0",
-    "mocha": "^7.0.0",
-    "typescript": "^3.7.5",
+    "applicationinsights": "^1.7.5",
     "minimist": "^1.2.5",
-    "applicationinsights": "^1.7.5"
+    "mocha": "^7.0.0",
+    "sync-request": "^6.1.0",
+    "ts-node": "8.10.1",
+    "typescript": "^3.7.5"
   }
 }
