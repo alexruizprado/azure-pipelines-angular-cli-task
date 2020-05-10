@@ -82,14 +82,11 @@ async function run() {
     const verbose: boolean = tl.getBoolInput('verbose', false);
     const isProd: boolean = tl.getBoolInput('prod', false);
 
-    telemetry.trackEventExtended({
-      name: 'Run Settings',
-      properties: {
-        'command': command ? command.toString() : '',
-        'debug': debug ? debug.toString() : '',
-        'verbose': verbose ? verbose.toString() : '',
-        'isProd': isProd ? isProd.toString() : '',
-      }
+    telemetry.extendProperties({
+      'command': command ? command.toString() : '',
+      'debug': debug ? debug.toString() : '',
+      'verbose': verbose ? verbose.toString() : '',
+      'isProd': isProd ? isProd.toString() : ''
     });
 
     if (command == 'bad') {
@@ -125,18 +122,18 @@ async function run() {
       execute(`npx`, `ng ${custom || command} ${args}`, project, (code: any) => {
         if (code == 1) {
           tl.setResult(tl.TaskResult.Failed, `ng ${custom || command} ${args} returned exit code 1`);
-          telemetry.trackException(`Executed ng ${custom || command} ${args} with exit code ${code}`);
+          telemetry.trackException(new Error(`Executed ng ${custom || command} ${args} with exit code ${code}`));
         } else {
           telemetry.trackEvent(`Executed ng ${custom || command} ${args} with exit code ${code}`);
         }
       }, (stderror: string) => {
         console.error(`There was an error: ${stderror}`);
         tl.setResult(tl.TaskResult.Failed, `ng ${custom || command} ${args} with error ${stderror}`);
-        telemetry.trackException(stderror);
+        telemetry.trackException(new Error(stderror));
       });
     }, () => {
       const message = 'Angular CLI was not found.\nRemember to perform "npm install" before using the steps of the Angular CLI extension.\nAngular CLI extensions uses @angular/cli package located in the node_modules folder of an Angular application.\nIf you still have issue or doubts you can open a ticket in https://github.com/alexruizprado/azure-pipelines-angular-cli-task under Issues.';
-      telemetry.trackException('Angular CLI not found.');
+      telemetry.trackException(new Error('Angular CLI not found.'));
       console.error(message);
       tl.setResult(tl.TaskResult.Failed, message);
       return;

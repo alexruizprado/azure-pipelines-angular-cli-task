@@ -40,6 +40,15 @@ export class AnalyticsService {
 
   }
 
+  extendProperties(properties: object) {
+    try {
+      appInsights.defaultClient.commonProperties = { ...appInsights.defaultClient.commonProperties, ...properties }
+    } catch (e) {
+      console.warn(e);
+    }
+
+  }
+
   trackEvent(message: string) {
     try {
       if (this.client) {
@@ -60,17 +69,7 @@ export class AnalyticsService {
     }
   }
 
-  trackException(message: string) {
-    try {
-      if (this.client) {
-        this.client.trackException({ exception: new Error(message) });
-      }
-    } catch (e) {
-      console.warn(e);
-    }
-  }
-
-  trackExceptionExtended(error: Error) {
+  trackException(error: Error) {
     try {
       if (this.client) {
         this.client.trackException({ exception: error });
