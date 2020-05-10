@@ -1,4 +1,8 @@
 import { exec, ExecException, spawn } from 'child_process';
+let os = require('os');
+
+console.log(os.platform(), os.release(), process);
+
 
 let child = spawn('npx', ['ng version'], {
   cwd: '.',
