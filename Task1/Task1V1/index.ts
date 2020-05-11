@@ -120,15 +120,14 @@ async function run() {
       console.log(`Executing ng ${custom || command} ${args}`);
       telemetry.trackEvent(`Executing ng ${custom || command} ${args}`);
       execute(`npx`, `ng ${custom || command} ${args}`, project, (code: any) => {
-        if (code == 1) {
-          tl.setResult(tl.TaskResult.Failed, `ng ${custom || command} ${args} returned exit code 1`);
+        if (code !== 0) {
+          tl.setResult(tl.TaskResult.Failed, `ng ${custom || command} ${args} returned exit code ${code}`);
           telemetry.trackException(new Error(`Executed ng ${custom || command} ${args} with exit code ${code}`));
         } else {
           telemetry.trackEvent(`Executed ng ${custom || command} ${args} with exit code ${code}`);
         }
       }, (stderror: string) => {
-        console.error(`There was an error: ${stderror}`);
-        tl.setResult(tl.TaskResult.Failed, `ng ${custom || command} ${args} with error ${stderror}`);
+        console.error(stderror?.toString());
         telemetry.trackException(new Error(stderror));
       });
     }, () => {
