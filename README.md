@@ -23,7 +23,7 @@ To use this taks in a YAML pipeline, you can alwyas go to the visual editor and 
     verbose: true
     debug: false
 ```
-For a full YAML template sample file, look at [pipeline.yaml](pipeline.yaml) in this repo.
+For a full YAML template sample file, look at [pipeline.yaml](pipeline.yaml) in the repo.
 
 ### Contributing
 If you like the extension and have some feedback, recommendations or issues to report, please do so on the Github repo. Pull requests are always welcome!
