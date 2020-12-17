@@ -11,7 +11,19 @@ Independent from the template you have the build step available to consume from 
 
 ![Extra options](https://raw.githubusercontent.com/alexruizprado/azure-pipelines-angular-cli-task/master/images/template_3.png)
 
-This extension is in preview, and more options will be available as development goes on.
+To use this taks in a YAML pipeline, you can alwyas go to the visual editor and copy or export the yaml code based on your selections. The base YAML structure for the step is as follow
+
+```yaml
+- task: AngularCLI@0
+  displayName: ng custom
+  inputs:
+    command: custom
+    project: SomeAngularProjectRootFolder
+    custom: e2e
+    verbose: true
+    debug: false
+```
+For a full YAML template sample file, look at [pipeline.yaml](pipeline.yaml) in this repo.
 
 ### Contributing
 If you like the extension and have some feedback, recommendations or issues to report, please do so on the Github repo. Pull requests are always welcome!
