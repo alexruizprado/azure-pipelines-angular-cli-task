@@ -11,11 +11,11 @@
   "visibility": [
     "Build"
   ],
-  "preview": true,
+  "preview": false,
   "version": {
-    "Major": 0,
+    "Major": 1,
     "Minor": 0,
-    "Patch": 33
+    "Patch": 0
   },
   "runsOn": [
     "Agent"

@@ -1,0 +1,60 @@
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    name: Default
+  steps:
+  - checkout: self
+    clean: true
+  - task: NodeTool@0
+    displayName: Use Node 10.x
+    inputs:
+      versionSpec: 10.x
+  - task: Npm@1
+    displayName: npm install
+    inputs:
+      workingDir: AngularTest
+      verbose: false
+  - task: AngularCLI@0
+    displayName: ng test
+    inputs:
+      command: test
+      project: AngularTest
+      verbose: true
+      debug: true
+  - task: AngularCLI@0
+    displayName: ng lint
+    inputs:
+      command: lint
+      project: AngularTest
+      verbose: true
+      debug: true
+  - task: AngularCLI@0
+    displayName: ng e2e
+    continueOnError: True
+    inputs:
+      command: e2e
+      project: AngularTest
+      verbose: true
+      debug: true
+  - task: AngularCLI@0
+    displayName: ng build
+    inputs:
+      project: AngularTest
+  - task: AngularCLI@0
+    displayName: ng custom
+    inputs:
+      command: custom
+      project: AngularTest
+      custom: version
+      verbose: true
+      debug: true
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      SourceFolder: AngularTest
+      Contents: dist\**
+      TargetFolder: $(Build.ArtifactStagingDirectory)
+      CleanTargetFolder: true
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'

@@ -2,14 +2,14 @@
   "manifestVersion": 1,
   "id": "angular-cli-1",
   "name": "Angular CLI",
-  "version": "1.0.26",
+  "version": "2.0.0",
   "publisher": "RaulARuiz",
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
     }
   ],
-  "preview": true,
+  "preview": false,
   "description": "Build, tests, lint, e2e an Angular project, or run a custom Angular CLI command.",
   "categories": [
     "Azure Pipelines"
