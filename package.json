@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "tfx-cli": "^0.7.11",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.6"
   }
 }
