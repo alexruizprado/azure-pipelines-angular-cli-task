@@ -19,7 +19,7 @@
     "@types/node": "^12.12.14",
     "@types/q": "^1.5.2",
     "applicationinsights": "^1.7.5",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "mocha": "^7.0.0",
     "sync-request": "^6.1.0",
     "ts-node": "8.10.1",
