@@ -16,7 +16,7 @@
     "create": "npx tfx extension create --rev-version"
   },
   "devDependencies": {
-    "tfx-cli": "^0.7.11",
+    "tfx-cli": "^0.12.0",
     "minimist": "^1.2.5"
   }
 }
